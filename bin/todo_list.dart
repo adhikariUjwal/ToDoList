@@ -40,11 +40,11 @@ void viewTask(List<String> todoList) {
   if(todoList.isEmpty) {
     print("No task available.");
   } else {
+    print("Available Task");
     for (int i = 0; i < todoList.length; i++){
       print('${i+1}. ${todoList[i]}');
     }
   }
-
 }
 
 void removeTask(List<String> todoList) {
@@ -59,13 +59,21 @@ void removeTask(List<String> todoList) {
   } else {
     print("Invalid task number");
   }
-
-
-
 }
 
 void markTaskComplete(List<String> todoList) {
+  viewTask(todoList);
+  print("Enter the number of task to mark completed: ");
+  String? taskNumber = stdin.readLineSync();
+  int? index = int.tryParse(taskNumber ?? '');
 
+  if(index != null && index > 0 && index <= todoList.length) {
+    String task = todoList.removeAt(index - 1);
+    todoList.add("$task (completed)");
+    print('Task marked as completed');
+  } else {
+    print("Invalid task number.");
+  }
 }
 
 
