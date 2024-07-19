@@ -48,6 +48,19 @@ void viewTask(List<String> todoList) {
 }
 
 void removeTask(List<String> todoList) {
+  viewTask(todoList);
+  print("Enter the task number you want to remove: ");
+  String? taskNumber = stdin.readLineSync();
+  int? index = int.tryParse(taskNumber ?? '');
+
+  if(index != null && index > 0 && index <= todoList.length) {
+    todoList.removeAt(index - 1);
+    print("Task Removed.");
+  } else {
+    print("Invalid task number");
+  }
+
+
 
 }
 
